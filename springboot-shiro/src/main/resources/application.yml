@@ -1,0 +1,31 @@
+server:
+  port: 9011
+
+# 数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/booksystem?useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: jj910712
+#  mvc:
+#    view:
+#      suffix: .html
+#    static-path-pattern: /**
+#  resources:
+#    static-locations: classpath:/templates/,classpath:/static/
+# 模板引擎配置
+  thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    cache: false
+    suffix: .html
+    prefix: classpath:/templates/
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.shiro.entity
+  global-config:
+    db-config:
+      id-type: auto
