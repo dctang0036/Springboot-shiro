@@ -1,9 +1,12 @@
 package com.shiro.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.shiro.domain.LoginResult;
 import com.shiro.entity.SysUser;
 import com.shiro.service.LoginService;
+import com.shiro.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,6 +30,9 @@ public class SysUserController {
     @Autowired
     private LoginService loginService;
 
+    @Autowired
+    private SysUserService sysUserService;
+
     /**
      * 身份认证测试接口
      * @param request
@@ -36,6 +42,13 @@ public class SysUserController {
     public String admin(HttpServletRequest request) {
         Object user = request.getSession().getAttribute("userName");
         return "success";
+    }
+
+    @RequestMapping("/user")
+    public String getUser() {
+        SysUser sysUser = sysUserService.getOne(new QueryWrapper<SysUser>().eq("user_name", "admin"));
+
+        return sysUser.toString();
     }
 
     /**
